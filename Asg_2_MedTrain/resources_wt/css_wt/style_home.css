@@ -1,0 +1,640 @@
+*{
+    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+
+/*    BASIC SETUP    */   
+
+
+html, body {
+    
+    font-family: "Lato", "Arial", sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
+/*------------HEADER---------*/
+
+
+header {
+    background-image:linear-gradient(rgb(0, 0, 0, 0.7), #464242), url(imgs/medImgAnalysis_BgImg.jpg);
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+
+.hero-text-box{
+    color: #fff;
+    margin: 250px 0 10px 60px;
+}
+
+
+.right-nav {
+    float: right;
+    list-style: none;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+
+.right-nav li {
+    padding: 8px 0px;
+    display: inline-block;
+    margin-left: 35px;
+    font-size: 20px;
+}
+
+
+.right-nav li button:link,
+.right-nav li button:visited {
+    text-transform: uppercase;
+    background: none;
+    transition: border-bottom 0.2s;
+    
+}
+
+
+.right-nav li button:hover,
+.right-nav li button:active { 
+    
+    background: #2e2f31;
+    
+}
+
+/*----------SIGNIN / SIGN UP BUTTONS---------*/
+
+
+
+.signup,
+.signin{
+    background: none;
+    text-decoration: none;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+
+
+
+
+
+/*------------REUSABLE------------*/
+
+
+.row{
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+
+
+
+
+/*---------MENU-------------*/
+
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin: 20px auto 0 60px;
+    padding: 0px;
+}
+
+
+
+.dropdown ul{
+    list-style-type: none;
+    
+}
+
+
+
+.sub-categories-dev,
+.sub-categories-bus,
+.sub-categories-mus,
+.sub-categories-des,
+.sub-categories-phot{
+    position: relative;
+    display: inline-block;
+}
+
+
+
+
+.categories {
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+
+.menu {
+    text-decoration: none;
+    color: #9a9a9a;
+    margin-left: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+
+
+
+/* --- dropdown ul li FIRST DROP ---*/
+
+ul li a:hover{
+    color: #fff;
+    background: rgb(59, 55, 55);
+    
+}
+
+
+ul li ul.first-drop{
+    min-width: 100%;
+    display: none;
+    position: absolute;
+}
+
+ul li:hover ul.first-drop{
+    display: block;
+    
+}
+
+ul li ul.first-drop li {
+    display: block;
+    
+}
+
+
+
+/* --- dropdown ul li DEVELOPMENT DROP ---*/
+
+
+
+ul li ul li a:hover{
+    color: #fff;
+    background: rgb(59, 55, 55);
+    
+}
+
+
+ul li ul li ul.dev-drop{
+    min-width: 100%;
+    display: none;
+    position: absolute;
+}
+
+ul li ul li:hover ul.dev-drop{
+    display: block;
+    
+}
+
+ul li ul li ul.dev-drop li {
+    display: block;
+    
+}
+
+/*-------Main menu link--------*/
+
+.menu-link,
+.submenu-link {
+    color: #fff;
+    text-decoration: none;   
+    margin-left: 40px;
+
+}
+
+
+
+/*------- HEADINGS --------*/
+
+
+
+h1, h2, h3 {
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 190%;
+    word-spacing: 4px;
+    letter-spacing: 1px;
+}
+
+
+h2 {
+    font-size: 240%;
+    word-spacing: 2px;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    letter-spacing: 0.5px;
+    padding: 10px;
+    
+}
+
+
+
+h2:after {
+    display: block;
+    height: 2px;
+    background-color: #e67e22;
+    content: " ";
+    width: 140px;
+    margin: 0 auto;
+    margin-top: 30px
+
+}
+
+
+h3 {
+    
+    margin-bottom: 10px;
+    
+}
+
+
+
+h4 {
+    font-weight: 300;
+    font-size: 170%;
+    
+}
+
+
+.register{
+    font-size: 90%;
+    
+}
+
+
+/*----------RED BAR--------*/
+
+.red_bar{
+    background: linear-gradient(-45deg,rgb(62, 128, 161) 0%,#3bbb67 100%);
+}
+
+
+.three-texts {
+    padding: 15px;
+    
+    
+}
+
+
+.text-1,
+.text-2 {
+    color: #fff;
+    
+}
+
+/*----------INSTRUCTORS--------*/
+
+.instructors {
+    margin-bottom: 60px;
+    margin-top: 60px;
+    
+}
+
+
+.instructor_blockquote {
+    background-color: #f2e6e6;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+
+
+.person_img {
+    margin-left: 50px;
+    padding: 20px 20px 5px;
+    height: 110px;
+}
+
+
+.person_para {
+    padding: 6px;
+    
+}
+
+
+.person_students {
+    padding: 15px;
+    
+}
+
+
+
+.person_spec {
+    font-size: 80%;
+    padding: 5px 15px ;
+}
+
+
+
+/*----------INSTRUCTORS--------*/
+/*----------TESTIMONIALS--------*/
+
+
+
+
+.testimonials {
+    background-color: #504e4e;
+    color: #fff;
+    
+}
+
+
+.border-style {
+    background: linear-gradient(-45deg,rgb(157, 73, 48) 0%,#60333f 100%);
+    height: 8px;
+}
+
+
+
+cite {
+    font-size: 90%;
+    margin-top: 25px;
+    display: block;
+    
+}
+
+
+cite img {
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+    
+}
+
+
+
+.blockquote_class {
+    background-color: #504e4e;
+    box-sizing: border-box;
+}
+
+
+
+
+/*------BEST COURSES-----------*/
+
+
+.best-courses {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    
+}
+
+/*-----------CourseBoxButtons------------*/
+.signup-btn:hover,
+.signup-btn:active {
+    color: #fff;
+    
+}
+
+
+.signup-btn {
+    background-color: #ccc;
+    margin-top: 10px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.Blood-Analysis-btn:hover,
+.Blood-Analysis-btn:active {
+    color: #fff;
+    
+}
+
+.Breast-Analysis-btn:hover,
+.Breast-Analysis-btn:active {
+    color: #fff;
+    
+}
+
+.Blood-Analysis-btn {
+    background-color: #ccc;
+    margin-top: 10px;
+    margin-right: 10px;;
+    float: right;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.Breast-Analysis-btn {
+    background-color: #ccc;
+    margin-top: 10px;
+    margin-right: 10px;;
+    float: right;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.signup-link {
+    text-decoration: none;
+    color: #3e4183;
+    font-weight: 350;
+}
+
+.bloodAnalysys-link {
+    text-decoration: none;
+    color: #3e4183;
+    font-weight: 350;
+}
+
+.breastAnalysys-link {
+    text-decoration: none;
+    color: #3e4183;
+    font-weight: 350;
+}
+
+/*---------OtherCourseBoxElements------------*/
+
+.course-box {
+    margin-bottom: 20px;
+    background-color: #cccccc;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.cb-2
+{
+    margin-left: 50px;
+}
+
+
+
+.course-text {
+    color: #3b3a3a;
+}
+
+
+
+
+
+.course-box{
+    opacity: 0.7;
+    width: 100%;
+    height: auto;
+    transform: scale(1.06);
+    transition: transform 0.5s, opacity 0.5s;
+    
+}
+
+
+.course-box:hover {
+    opacity: 1;
+    transform: scale(0.98);
+    
+}
+
+
+
+
+
+/*--------FOOTER------------*/
+
+
+
+
+footer {
+    background-color: #333;
+    padding: 35px;
+    font-size: 80%;
+    
+}
+
+
+.footer-nav {
+    list-style: none;
+    float: left;
+    
+}
+
+
+.social-links {
+    list-style: none;
+    float: right;
+    text-decoration: none;
+    
+    
+}
+
+
+.footer-nav li,
+.social-links li {
+    display: inline-block;
+    margin: 20px;
+    
+}
+
+
+.footer-nav li:last-child,
+.social-links li:last-child{
+    margin-right: 0;
+    
+}
+
+
+.footer-nav li a:link,
+.footer-nav li a:visited,
+.social-links li a:link,
+.social-links li a:visited{
+    text-decoration: none;
+    border: 0;
+    color: #888;
+    transition: 0.2s;
+    
+}
+
+
+.footer-nav li a:hover,
+.footer-nav li a:active{
+    color: #ddd;
+
+}
+
+
+
+
+.social-links li a:link,
+.social-links li a:visited{
+    font-size: 160%;
+}
+
+
+.ion-social-facebook,
+.ion-social-twitter,
+.ion-social-googleplus,
+.ion-social-instagram {
+     transition: color 0.2s;
+    
+}
+
+
+.ion-social-facebook:hover{
+    color: #3b5998;
+    
+}
+
+.ion-social-twitter:hover{
+    color: #00aced
+    
+}
+
+.ion-social-googleplus:hover{
+    color: #dd4b39;
+    
+}
+
+.ion-social-instagram:hover{
+    color: #517fa4;
+    
+}
+
+
+
+footer p{
+    color: #888;
+    text-align: center;
+
+    margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
