@@ -1,29 +1,65 @@
 import streamlit as st
 from PIL import Image
 
+# Set page title and favicon
+st.set_page_config(page_title="Breast and Blood Analysis", page_icon=":microscope:")
 
-header = st.container()
-dataset = st.container()
-features = st.container()
-model_Training = st.container()
+# Define color scheme
+COLOR_SCHEME = {
+    "primary": "#0087c9",
+    "secondary": "#1f2d3d",
+    "text": "#444444",
+    "background": "#f9f9f9",
+}
 
-with header:
-    st.title('Medical image analysis for breast and blood')
-    st.text('In this project with are going to perform medical image analysis for breast and blood')
+# Set custom CSS
+CUSTOM_CSS = f"""
+    <style>
+        body {{
+            color: {COLOR_SCHEME['text']};
+            background-color: {COLOR_SCHEME['background']};
+        }}
+        h1, h2, h3, h4, h5, h6 {{
+            color: {COLOR_SCHEME['primary']};
+        }}
+        .streamlit-expanderHeader {{
+            color: {COLOR_SCHEME['primary']};
+        }}
+        .streamlit-expanderContent {{
+            background-color: {COLOR_SCHEME['background']};
+        }}
+        .streamlit-widget stDropdown {{
+            background-color: {COLOR_SCHEME['secondary']};
+            color: {COLOR_SCHEME['text']};
+        }}
+        .css-1aumxhk {{
+            color: {COLOR_SCHEME['primary']} !important;
+        }}
+        .css-ewgfru {{
+            color: {COLOR_SCHEME['primary']} !important;
+        }}
+        .css-1mlaifk {{
+            color: {COLOR_SCHEME['primary']} !important;
+        }}
+    </style>
+"""
+st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 
-with dataset:
-    st.header('Medical image dataset for breast and blood')
+# Define layout
+st.title("Breast and Blood Analysis")
+st.subheader("Upload Image")
+image_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
+if image_file is not None:
+    st.image(image_file, caption="Uploaded image", use_column_width=True)
 
+st.sidebar.title("Navigation")
+sidebar_options = ["Home", "Analysis", "About"]
+selected_sidebar = st.sidebar.radio("", sidebar_options)
 
-with features:
-    st.header('Upload here')
-
-    uploaded_file = st.file_uploader("Upload an image to analyze", type=['jpg', 'png', 'jpeg'])
-    
-    if uploaded_file is not None:
-        image = Image.open(uploaded_file)
-        st.image(image, caption='Uploaded image')
-
-
-with model_Training:
-    st.header('Time to train the model')
+# Display selected page
+if selected_sidebar == "Home":
+    st.write("This is the home page")
+elif selected_sidebar == "Analysis":
+    st.write("This is the analysis page")
+elif selected_sidebar == "About":
+    st.write("This is the about page") 
