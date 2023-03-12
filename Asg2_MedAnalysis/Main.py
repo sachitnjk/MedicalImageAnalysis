@@ -6,7 +6,12 @@ from PIL import Image
 st.set_page_config(page_title="Breast and Blood Analysis", page_icon=":microscope:")
 
 #loading the model
-model = tf.keras.models.load_model('own_CNN_model.h5')
+model_1 = tf.keras.models.load_model('own_CNN_model.h5')
+model_2 = tf.keras.models.load_model('Blood_MNIST_CNN_own_model_best.h5')
+#model_3 = tf.keras.models.load_model('.h5')
+#model_4 = tf.keras.models.load_model('.h5')
+
+
 
 # Define color scheme
 COLOR_SCHEME = {
@@ -50,19 +55,35 @@ CUSTOM_CSS = f"""
 st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 
 # Define layout
-st.title("Breast and Blood Analysis")
+st.markdown("<h1 style='text-align: center;'>Breast and Blood Analysis</h1>", unsafe_allow_html=True)
+
 st.subheader("Upload Image")
+
+model_selection = st.selectbox("Select a model",("model 1", "model 2"))
+
 image_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
 if image_file is not None:
     st.image(image_file, caption="Uploaded image", use_column_width=True)
-    img = Image.open(image_file).convert('L')
-    img = img.resize((28, 28))
-    img = tf.keras.preprocessing.image.img_to_array(img)
-    img = tf.expand_dims(img, axis=0)
+    
+    img = Image.open(image_file)
+    if model_selection == "model 1":
+        img = img.convert('L')
+        img = img.resize((28, 28))
+        img = tf.keras.preprocessing.image.img_to_array(img)
+        img = tf.expand_dims(img, axis=0)
+    elif model_selection == "model 2":
+        img = img.resize((28, 28))
+        img = tf.keras.preprocessing.image.img_to_array(img)
+        img = tf.expand_dims(img, axis=0)
+
     if st.button("Predict"):
-        predictions = model.predict(img)
+        if model_selection == "model 1":
+            predictions = model_1.predict(img)
+        elif model_selection == "model 2":
+            predictions = model_2.predict(img)
         st.write('Predictions:')
         st.write(predictions)
+
 st.sidebar.title("Navigation")
 sidebar_options = ["Home", "Analysis", "About"]
 selected_sidebar = st.sidebar.radio("", sidebar_options)
