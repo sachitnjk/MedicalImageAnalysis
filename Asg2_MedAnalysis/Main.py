@@ -55,25 +55,17 @@ st.subheader("Upload Image")
 image_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
 if image_file is not None:
     st.image(image_file, caption="Uploaded image", use_column_width=True)
-st.sidebar.title("Navigation")
-sidebar_options = ["Home", "Analysis", "About"]
-selected_sidebar = st.sidebar.radio("", sidebar_options)
-
-if image_file is not None:
-    #loading image using PIL
-    img = Image.open(image_file)
-
-    #Processing the image
+    img = Image.open(image_file).convert('L')
     img = img.resize((28, 28))
     img = tf.keras.preprocessing.image.img_to_array(img)
     img = tf.expand_dims(img, axis=0)
-
-
-predictions = model.predict(img)
-
-st.write('Predictions:')
-st.write(predictions)
-
+    if st.button("Predict"):
+        predictions = model.predict(img)
+        st.write('Predictions:')
+        st.write(predictions)
+st.sidebar.title("Navigation")
+sidebar_options = ["Home", "Analysis", "About"]
+selected_sidebar = st.sidebar.radio("", sidebar_options)
 
 # Display selected page
 if selected_sidebar == "Home":
@@ -81,4 +73,4 @@ if selected_sidebar == "Home":
 elif selected_sidebar == "Analysis":
     st.write("This is the analysis page")
 elif selected_sidebar == "About":
-    st.write("This is the about page") 
+    st.write("This is the about page")
