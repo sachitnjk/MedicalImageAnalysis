@@ -1,5 +1,6 @@
 import streamlit as st
 import tensorflow as tf
+import numpy as np
 from PIL import Image
 
 # Set page title and favicon
@@ -98,19 +99,21 @@ if image_file is not None:
 
     if st.button("Predict"):
         if model_selection == "model 1":
-            predictions = model_1.predict(img)
+            predictions = model_1.predict(img)[0]
         elif model_selection == "model 2":
-            predictions = model_2.predict(img)
+            predictions = model_2.predict(img)[0]
         elif model_selection == "model 3":
-            predictions = model_3.predict(img)
+            predictions = model_3.predict(img)[0]
         elif model_selection == "model 4":
-            predictions = model_4.predict(img)
+            predictions = model_4.predict(img)[0]
         elif model_selection == "model 5":
-            predictions = model_5.predict(img)
+            predictions = model_5.predict(img)[0]
         elif model_selection == "model 6":
-            predictions = model_6.predict(img)
+            predictions = model_6.predict(img)[0]
         st.write('Predictions:')
         st.write(predictions)
+        max_index = np.argmax(predictions)  # get index of the column with highest value
+        st.write(f"The column with the highest value is {max_index}.")
 
 st.sidebar.title("Navigation")
 sidebar_options = ["Home", "Analysis", "About"]
