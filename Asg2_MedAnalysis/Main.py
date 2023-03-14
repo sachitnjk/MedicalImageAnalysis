@@ -69,31 +69,38 @@ if image_file is not None:
     st.image(image_file, caption="Uploaded image", use_column_width=True)
     
     img = Image.open(image_file)
+
     if model_selection == "ResNet50 [Blood]":
         img = img.resize((100, 100))
         img = tf.keras.preprocessing.image.img_to_array(img)
+        img = img/255
         img = tf.expand_dims(img, axis=0)
     elif model_selection == "Own model 95% accuracy [Blood]":
         img = img.resize((28, 28))
         img = tf.keras.preprocessing.image.img_to_array(img)
+        img = img/255
         img = tf.expand_dims(img, axis=0)
     elif model_selection == "Own model 90% accuracy [Blood]":
         img = img.resize((28, 28))
         img = tf.keras.preprocessing.image.img_to_array(img)
+        img = img/255
         img = tf.expand_dims(img, axis=0)
     elif model_selection == "VGG16 [Breast]":
         img = img.resize((224, 224))
         img = tf.keras.preprocessing.image.img_to_array(img)
+        img = img/255
         img = tf.expand_dims(img, axis=0)
     elif model_selection == "Own model 76% accuracy [Breast]":
         img = img.convert('L')
         img = img.resize((28, 28))
         img = tf.keras.preprocessing.image.img_to_array(img)
+        img = img/255
         img = tf.expand_dims(img, axis=0)
     elif model_selection == "Own model 82% accuracy [Breast]":
         img = img.convert('L')
         img = img.resize((28, 28))
         img = tf.keras.preprocessing.image.img_to_array(img)
+        img = img/255
         img = tf.expand_dims(img, axis=0)
     
 
