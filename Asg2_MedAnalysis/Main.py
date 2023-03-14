@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 
 # Set page title and favicon
-st.set_page_config(page_title="Breast and Blood Analysis", page_icon=":microscope:")
+st.set_page_config(page_title="Breast and Blood Analysis /n Group No.", page_icon=":microscope:")
 
 #loading the model
 model_1 = tf.keras.models.load_model('Resnet50_model_100_bloodMNIST_jpg100x100.h5')
@@ -62,35 +62,35 @@ st.markdown("<h1 style='text-align: center;'>Breast and Blood Analysis</h1>", un
 
 st.subheader("Upload Image")
 
-model_selection = st.selectbox("Select a model",("model 1", "model 2", "model 3", "model 4", "model 5", "model 6"))
-
+model_selection = st.selectbox("Select a model",("ResNet50 [Blood]", "Own model 95% accuracy [Blood]", "Own model 90% accuracy [Blood]", "VGG16 [Breast]", "Own model 76% accuracy [Breast]", "Own model 82% accuracy [Breast]"))
+ 
 image_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
 if image_file is not None:
     st.image(image_file, caption="Uploaded image", use_column_width=True)
     
     img = Image.open(image_file)
-    if model_selection == "model 1":
+    if model_selection == "ResNet50 [Blood]":
         img = img.resize((100, 100))
         img = tf.keras.preprocessing.image.img_to_array(img)
         img = tf.expand_dims(img, axis=0)
-    elif model_selection == "model 2":
+    elif model_selection == "Own model 95% accuracy [Blood]":
         img = img.resize((28, 28))
         img = tf.keras.preprocessing.image.img_to_array(img)
         img = tf.expand_dims(img, axis=0)
-    elif model_selection == "model 3":
+    elif model_selection == "Own model 90% accuracy [Blood]":
         img = img.resize((28, 28))
         img = tf.keras.preprocessing.image.img_to_array(img)
         img = tf.expand_dims(img, axis=0)
-    elif model_selection == "model 4":
+    elif model_selection == "VGG16 [Breast]":
         img = img.resize((224, 224))
         img = tf.keras.preprocessing.image.img_to_array(img)
         img = tf.expand_dims(img, axis=0)
-    elif model_selection == "model 5":
+    elif model_selection == "Own model 76% accuracy [Breast]":
         img = img.convert('L')
         img = img.resize((28, 28))
         img = tf.keras.preprocessing.image.img_to_array(img)
         img = tf.expand_dims(img, axis=0)
-    elif model_selection == "model 6":
+    elif model_selection == "Own model 82% accuracy [Breast]":
         img = img.convert('L')
         img = img.resize((28, 28))
         img = tf.keras.preprocessing.image.img_to_array(img)
@@ -98,17 +98,17 @@ if image_file is not None:
     
 
     if st.button("Predict"):
-        if model_selection == "model 1":
+        if model_selection == "ResNet50 [Blood]":
             predictions = model_1.predict(img)[0]
-        elif model_selection == "model 2":
+        elif model_selection == "Own model 95% accuracy [Blood]":
             predictions = model_2.predict(img)[0]
-        elif model_selection == "model 3":
+        elif model_selection == "Own model 95% accuracy [Blood]":
             predictions = model_3.predict(img)[0]
-        elif model_selection == "model 4":
+        elif model_selection == "VGG16 [Breast]":
             predictions = model_4.predict(img)[0]
-        elif model_selection == "model 5":
+        elif model_selection == "Own model 76% accuracy [Breast]":
             predictions = model_5.predict(img)[0]
-        elif model_selection == "model 6":
+        elif model_selection == "Own model 82% accuracy [Breast]":
             predictions = model_6.predict(img)[0]
         st.write('Predictions:')
         st.write(predictions)
