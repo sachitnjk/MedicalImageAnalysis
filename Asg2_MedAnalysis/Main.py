@@ -62,7 +62,7 @@ st.markdown("<h1 style='text-align: center;'>Breast and Blood Analysis</h1>", un
 
 st.subheader("Upload Image")
 
-model_selection = st.selectbox("Select a model",("ResNet50 [Blood]", "Own model 95% accuracy [Blood]", "Own model 90% accuracy [Blood]", "VGG16 [Breast]", "Own model 76% accuracy [Breast]", "Own model 82% accuracy [Breast]"))
+model_selection = st.selectbox("Select a model",("ResNet50 [Blood]", "Novel DNN 95% accuracy [Blood]", "Novel DNN 85% accuracy [Blood]", "VGG16 [Breast]", "Novel DNN 76% accuracy [Breast]", "Novel DNN 82% accuracy [Breast]"))
  
 image_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
 if image_file is not None:
@@ -70,33 +70,41 @@ if image_file is not None:
     
     img = Image.open(image_file)
 
+    key = 0
+
     if model_selection == "ResNet50 [Blood]":
+        key = 0
         img = img.resize((100, 100))
         img = tf.keras.preprocessing.image.img_to_array(img)
         img = img/255
         img = tf.expand_dims(img, axis=0)
-    elif model_selection == "Own model 95% accuracy [Blood]":
+    elif model_selection == "Novel DNN 95% accuracy [Blood]":
+        key = 0
         img = img.resize((28, 28))
         img = tf.keras.preprocessing.image.img_to_array(img)
         img = img/255
         img = tf.expand_dims(img, axis=0)
-    elif model_selection == "Own model 90% accuracy [Blood]":
+    elif model_selection == "Novel DNN 85% accuracy [Blood]":
+        key = 0
         img = img.resize((28, 28))
         img = tf.keras.preprocessing.image.img_to_array(img)
         img = img/255
         img = tf.expand_dims(img, axis=0)
     elif model_selection == "VGG16 [Breast]":
+        key = 1
         img = img.resize((224, 224))
         img = tf.keras.preprocessing.image.img_to_array(img)
         img = img/255
         img = tf.expand_dims(img, axis=0)
-    elif model_selection == "Own model 76% accuracy [Breast]":
+    elif model_selection == "Novel DNN 76% accuracy [Breast]":
+        key = 1
         img = img.convert('L')
         img = img.resize((28, 28))
         img = tf.keras.preprocessing.image.img_to_array(img)
         img = img/255
         img = tf.expand_dims(img, axis=0)
-    elif model_selection == "Own model 82% accuracy [Breast]":
+    elif model_selection == "Novel DNN 82% accuracy [Breast]":
+        key = 1
         img = img.convert('L')
         img = img.resize((28, 28))
         img = tf.keras.preprocessing.image.img_to_array(img)
@@ -107,29 +115,56 @@ if image_file is not None:
     if st.button("Predict"):
         if model_selection == "ResNet50 [Blood]":
             predictions = model_1.predict(img)[0]
-        elif model_selection == "Own model 95% accuracy [Blood]":
+        elif model_selection == "Novel DNN 95% accuracy [Blood]":
             predictions = model_2.predict(img)[0]
-        elif model_selection == "Own model 95% accuracy [Blood]":
+        elif model_selection == "Novel DNN 85% accuracy [Blood]":
             predictions = model_3.predict(img)[0]
         elif model_selection == "VGG16 [Breast]":
             predictions = model_4.predict(img)[0]
-        elif model_selection == "Own model 76% accuracy [Breast]":
+        elif model_selection == "Novel DNN 76% accuracy [Breast]":
             predictions = model_5.predict(img)[0]
-        elif model_selection == "Own model 82% accuracy [Breast]":
+        elif model_selection == "Novel DNN 82% accuracy [Breast]":
             predictions = model_6.predict(img)[0]
         st.write('Predictions:')
         st.write(predictions)
         max_index = np.argmax(predictions)  # get index of the column with highest value
-        st.write(f"The column with the highest value is {max_index}.")
+        
+        if key == 0:
+            if max_index == 0:
+                str = "Basophil"
+            elif max_index == 1:
+                str = "Eosinophil"
+            elif max_index == 2:
+                str = "Erythroblast"
+            elif max_index == 3:
+                str = "Immature Granulocytes"
+            elif max_index == 4:
+                str = "Lymphocyte"
+            elif max_index == 5:
+                str = "Monocyte"
+            elif max_index == 6:
+                str = "Neutrophil"
+            elif max_index == 7:
+                str = "Platelet"
+            else:
+                str = "None"
+        else:
+            if max_index == 0:
+                str = "Benign"
+            elif max_index == 1:
+                str = "Normal/Malignant"
+            else:
+                str = "None"
+
+
+        st.write(f"The predicted class is {max_index} and the name of the class is ", str, ".")
 
 st.sidebar.title("Navigation")
-sidebar_options = ["Home", "Analysis", "About"]
+sidebar_options = ["Home", "About"]
 selected_sidebar = st.sidebar.radio("", sidebar_options)
 
 # Display selected page
 if selected_sidebar == "Home":
-    st.write("This is the home page")
-elif selected_sidebar == "Analysis":
-    st.write("This is the analysis page")
+    st.write("Selet a model from the dropdown and click on the predict button to get the predictions")
 elif selected_sidebar == "About":
     st.write("This is the about page")
