@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 
 # Set page title and favicon
-st.set_page_config(page_title="Breast and Blood Analysis /n Group No.", page_icon=":microscope:")
+st.set_page_config(page_title="Breast and Blood Analysis.", page_icon=":microscope:")
 
 #loading the model
 model_1 = tf.keras.models.load_model('Resnet50_model_100_bloodMNIST_jpg100x100.h5')
@@ -58,7 +58,8 @@ CUSTOM_CSS = f"""
 st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 
 # Define layout
-st.markdown("<h1 style='text-align: center;'>Breast and Blood Analysis</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>Group No. 34</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>Medical Image Analysis and Classification</h1>", unsafe_allow_html=True)
 
 st.subheader("Upload Image")
 
@@ -159,12 +160,10 @@ if image_file is not None:
 
         st.write(f"The predicted class is {max_index} and the name of the class is ", str, ".")
 
-st.sidebar.title("Navigation")
-sidebar_options = ["Home", "About"]
-selected_sidebar = st.sidebar.radio("", sidebar_options)
-
 # Display selected page
-if selected_sidebar == "Home":
-    st.write("Selet a model from the dropdown and click on the predict button to get the predictions")
-elif selected_sidebar == "About":
-    st.write("This is the about page")
+st.write("Selet a model from the dropdown and click on the predict button to get the predictions")
+st.write("Team members:")
+st.write("Pratiksha Rajendran - K2203709")
+st.write("Sachit Nanajkar - K2166043")
+st.write("Sujay Grama Suresh Kumar - K2201621")
+st.write("Vishnuvardhan Gorantla - K2259314")
